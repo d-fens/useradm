@@ -59,10 +59,10 @@ class RBAccount:
         self.wrapper(os.chown, webtree, usr.uidNumber, usr.gidNumber)
         self.cmd('%s -Rp %s %s' % (rbconfig.command_cp, rbconfig.dir_skel, usr.homeDirectory))
         self.wrapper(os.chmod, usr.homeDirectory, 0o711)
-        self.wrapper(os.symlink, webtree, '%s/public_html' % usr.homeDirectory)
+        self.wrapper(os.symlink, webtree, os.path.join(usr.homeDirectory, 'public_html'))
         #symlink vuln fix
         try:
-            self.wrapper(os.chown, usr.homeDirectory+'/public_html', usr.uidNumber, usr.gidNumber)
+            self.wrapper(os.chown, os.path.join(usr.homeDirectory, 'public_html'), usr.uidNumber, usr.gidNumber)
         except OSError:
             pass
 
@@ -71,7 +71,7 @@ class RBAccount:
         # have an alternate email that's not a redbrick address.
         #
         if usr.usertype in rbconfig.usertypes_dcu and usr.altmail and not re.search(r'@.*redbrick\.dcu\.ie', usr.altmail):
-            forward_file = '%s/.forward' % usr.homeDirectory
+            forward_file = os.path.join(usr.homeDirectory, '.forward')
             fd = self.my_open(forward_file)
             fd.write('%s\n' % usr.altmail)
             self.my_close(fd)
@@ -159,7 +159,7 @@ class RBAccount:
 
         # Remove and then attempt to rename webtree symlink.
         #
-        webtreelink = '%s/public_html' % newusr.homeDirectory
+        webtreelink = os.path.join(newusr.homeDirectory, 'public_html')
         try:
             self.wrapper(os.unlink, webtreelink)
         except OSError:
@@ -285,7 +285,7 @@ class RBAccount:
             print('%04o' % (os.stat(usr.homeDirectory)[0] & 0o7777))
         else:
             print('Home directory does not exist')
-        print("%13s: %s" % ('logged in', os.path.exists('%s/%s' % (rbconfig.dir_signaway_state, usr.uid)) and 'true' or 'false'))
+        print("%13s: %s" % ('logged in', os.path.exists(os.path.join(rbconfig.dir_signaway_state, usr.uid)) and 'true' or 'false'))
 
     #---------------------------------------------------------------------#
     # USER CHECKING AND INFORMATION RETRIEVAL METHODS                     #

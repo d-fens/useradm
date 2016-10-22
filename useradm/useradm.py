@@ -2083,7 +2083,7 @@ def get_disuser_period(usr):
 def get_disuser_message(usr):
     """Get message to display when disusered user tries to log in."""
 
-    file = "%s/%s" % (rbconfig.dir_daft, usr.uid)
+    file = os.path.join(rbconfig.dir_daft, usr.uid)
     editor = os.environ.get('EDITOR', os.environ.get('VISUAL', 'vi'))
 
     while 1:
