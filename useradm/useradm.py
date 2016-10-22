@@ -1567,11 +1567,11 @@ Reply-To: admin-request@redbrick.dcu.ie
 """
 -------------------------------------------------------------------------------
 
-your Redbrick webpage: http://www.redbrick.dcu.ie/~%s
+your Redbrick webpage: https://www.redbrick.dcu.ie/~%s
 your Redbrick email: %s@redbrick.dcu.ie
 
 You can find out more about our services at:
-http://www.redbrick.dcu.ie/about/welcome
+https://www.redbrick.dcu.ie/about/welcome
 """ % (usr.uid, usr.uid))
 
     fd.write(
@@ -1622,7 +1622,7 @@ Note: if you have left DCU, you need to apply for associate membership.
 You can pay in person, by lodging money into our account, electronic bank
 transfer, or even PayPal! All the details you need are here:
 
-http://www.redbrick.dcu.ie/help/joining/
+https://www.redbrick.dcu.ie/help/joining/
 
 Our bank details are:
 
