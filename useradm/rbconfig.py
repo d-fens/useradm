@@ -179,6 +179,7 @@ convert_primary_groups = {
 #---------------------------------------------------------------------#
 
 def gen_passwd():
+	pass
 
 def gen_homedir(username, usertype):
 	"""Construct a user's home directory path given username and usertype."""
