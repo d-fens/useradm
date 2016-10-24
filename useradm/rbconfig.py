@@ -18,7 +18,7 @@ __author__  = 'Cillian Sharkey'
 
 # Find out where the rrs directory is.
 
-dir_rrs = (os.path.dirname(__file__) or '.') + '/'
+dir_rrs = (os.path.dirname(__file__) or '.') + os.sep
 
 # Maximum length of usernames and groups.
 
@@ -185,7 +185,7 @@ def gen_homedir(username, usertype):
     """Construct a user's home directory path given username and usertype."""
 
     if usertype in ('member', 'associat'):
-        hash = username[0] + '/'
+        hash = username[0] + os.sep
     else:
         hash = ''
 
@@ -194,7 +194,7 @@ def gen_homedir(username, usertype):
 def gen_webtree(username):
     """Generate a user's webtree path for given username."""
 
-    return '%s/%s/%s' % (dir_webtree, username[0], username)
+    return os.path.join(dir_webtree, username[0], username)
 
 def gen_quotas(usertype = None):
     """Returns a dictionary of quota limits for filesystems (possibly

@@ -1004,7 +1004,7 @@ class RBUserDB:
 
             usertypes[usr.usertype]['TOTAL'] += 1
 
-            signed = not self.opt.dbonly and os.path.exists('%s/%s' % (rbconfig.dir_signaway_state, uid))
+            signed = not self.opt.dbonly and os.path.exists(os.path.join(rbconfig.dir_signaway_state, uid))
             pay = usr.yearsPaid == None and 'nonpay' or usr.yearsPaid > 0 and 'paid' or 'unpaid'
 
             usertypes[usr.usertype][pay] += 1
